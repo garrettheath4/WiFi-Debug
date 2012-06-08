@@ -1,6 +1,12 @@
 #!/bin/sh
 
-if [ -z "`ifconfig en1 | fgrep 'inet '`" ]; then
+WIFI='en1'
+
+if [ -z "`ifconfig -l | fgrep en1`" ]; then
+	WIFI='en0'
+fi
+
+if [ -z "`ifconfig en0 | fgrep 'inet '`" ]; then
 	echo 'Wi-Fi: No IP address'
 	exit 0
 else
