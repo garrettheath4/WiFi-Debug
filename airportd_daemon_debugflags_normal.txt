@@ -1,0 +1,35 @@
+#AirPort Userland Debug Flags
+	#DriverDiscovery
+	#DriverEvent
+	#Info
+	#SystemConfiguration
+	#UserEvent
+	#PreferredNetworks
+	#AutoJoin
+	#IPC
+	#Scan
+	#802.1x
+	#Assoc
+	#Keychain
+	#RSNAuth
+	#WoW
+	#P2P
+	#Roam
+	#BTCoex
+	-AllUserland
+
+#AirPort Driver Common Flags
+	#DriverInfo
+	#DriverError
+	#DriverWPA
+	#DriverScan
+	+AllDriver
+
+#AirPort Driver Vendor Flags
+	+VendorAssoc
+	+VendorConnection
+	-VendorP2P
+	#AllVendor
+
+#AirPort Global Flags
+	+LogFile

@@ -1,0 +1,5 @@
+en1: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+	ether 00:26:08:e6:08:4c 
+	inet6 fe80::226:8ff:fee6:84c%en1 prefixlen 64 scopeid 0x5 
+	media: autoselect
+	status: active
