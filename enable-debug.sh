@@ -1,2 +1,3 @@
 #!/bin/sh
-sudo /usr/libexec/airportd debug +AllUserland +alldriver +allvendor +LogFile
+sudo ipconfig setverbose 1
+sudo /usr/libexec/airportd debug +alluserland +alldriver +allvendor +LogFile
