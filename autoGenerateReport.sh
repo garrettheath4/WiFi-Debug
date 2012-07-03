@@ -36,7 +36,11 @@ fi
 sleep 60
 
 # Collect TCP Dump
-#sudo tcpdump -i "$WIFI" -p -s0 -vv port bootps -w "$REPORTDIR/dhcptrace.pcap"
+sudo -n tcpdump -i "$WIFI" -p -s0 -vv -w "$REPORTDIR/dhcptrace.pcap" "port bootps"
+if [ "$?" -eq 1 ]; then
+	echo "Warning: Unable to use sudo to get a tcpdump"
+	tcpdump -i "$WIFI" -p -s0 -vv -w "$REPORTDIR/dhcptrace.pcap" "port bootps"
+fi
 
 # Gather kernel logs
 for log in $LOGS; do
