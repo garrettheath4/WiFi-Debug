@@ -13,6 +13,12 @@ LOGS="/var/log/kernel.log
 DATE="`date +%Y.%m.%d-%H.%M.%S`"
 REPORTDIR=~/Desktop/"$DATE"
 
+# Pick network interface for Wi-Fi
+WIFI='en1'
+if [ -z "`ifconfig -l | fgrep en1`" ]; then
+	WIFI='en0'
+fi
+
 # Create folder to store report data
 mkdir "$REPORTDIR"
 echo "Saving logs in $REPORTDIR"
@@ -28,6 +34,9 @@ else
 fi
 
 sleep 60
+
+# Collect TCP Dump
+#sudo tcpdump -i "$WIFI" -p -s0 -vv port bootps -w "$REPORTDIR/dhcptrace.pcap"
 
 # Gather kernel logs
 for log in $LOGS; do
