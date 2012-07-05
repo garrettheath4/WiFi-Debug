@@ -35,15 +35,6 @@ fi
 
 sleep 60
 
-# Collect TCP Dump
-sudo killall -SIGTERM tcpdump
-touch "$REPORTDIR/dhcptrace.pcap"
-sudo -n tcpdump -i "$WIFI" -p -s0 -vv -w "$REPORTDIR/dhcptrace.pcap" "port bootps" &
-if [ "$?" -eq 1 ]; then
-	echo "Warning: Unable to use sudo to get a tcpdump"
-	tcpdump -i "$WIFI" -p -s0 -vv -w "$REPORTDIR/dhcptrace.pcap" "port bootps"
-fi
-
 # Gather kernel logs
 for log in $LOGS; do
 	if [ -f "$log" ]; then
@@ -55,3 +46,12 @@ done
 
 # Run AirPort scan
 /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -I -scan > "$REPORTDIR/AirportScan.txt"
+
+# Collect TCP Dump
+sudo killall -SIGTERM tcpdump
+touch "$REPORTDIR/dhcptrace.pcap"
+sudo -n tcpdump -i "$WIFI" -p -s0 -vv -w "$REPORTDIR/dhcptrace.pcap" "port bootps" &
+if [ "$?" -eq 1 ]; then
+	echo "Warning: Unable to use sudo to get a tcpdump"
+	tcpdump -i "$WIFI" -p -s0 -vv -w "$REPORTDIR/dhcptrace.pcap" "port bootps"
+fi
